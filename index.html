@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>3D</title>
+		<style>
+			* {
+			  overflow: hidden;
+			}
+			#modelViewer {
+				position: relative;
+			}
+			#backDrop{
+				position: absolute;
+				left:0;
+				right:0;
+				top:0;
+				bottom:0;
+				background-color:transparent;
+			}
+			#interactionPrompt {
+				display:none;
+			}
+		</style>
+                <!-- Import the component -->
+                <script type="module" src="./model-viewer.min.js"></script>
+	</head>
+	<body>
+		<!-- <button id="sayHiBtn">Salut !</button>
+ 		<button id="sayGoodJobBtn">Bien joué !</button>
+ 		<button id="sayYesBtn">Oui</button>
+ 		<button id="sayNoBtn">Non</button>
+ 		<button id="punchBtn">Punch</button> -->
+		<!-- Use it like any other HTML element -->
+		<model-viewer 
+				id="modelViewer" alt="Robot"
+              	src="./RobotExpressive.glb"
+              	ar-modes="webxr scene-viewer" scale="0.2 0.2 0.2" shadow-intensity="1"
+              	shadow-intensity="1" camera-controls
+				autoPlay animation-name="Idle"
+				disable-pan disable-tap disable-zoom
+				>
+				<!-- <button slot="ar-button"></button> -->
+				<button slot="interaction-prompt" id="interactionPrompt"></button>
+				<div id="backDrop"></div>
+		</model-viewer>
+	</body>
+	<script>
+		const modelViewer = document.getElementById("modelViewer");
+		//const sayHiBtn = document.getElementById("sayHiBtn");
+		//const sayGoodJobBtn = document.getElementById("sayGoodJobBtn");
+		//const sayYesBtn = document.getElementById("sayYesBtn");
+		//const sayNoBtn = document.getElementById("sayNoBtn");
+		//const punchBtn = document.getElementById("punchBtn");
+
+		modelViewer.style.width = `${window.innerWidth}px`;
+		modelViewer.style.height = `${window.innerHeight}px`;
+		
+		window.addEventListener("resize", () => {
+			modelViewer.style.width = `${window.innerWidth}px`;
+			modelViewer.style.height = `${window.innerHeight}px`;
+		});
+		
+		//sayHiBtn.addEventListener("click", async ()=>{
+			//modelViewer.animationName = "Wave";	
+			//await modelViewer.updateComplete;
+			//modelViewer.play({repetitions: 1});
+		//});	
+
+		//sayGoodJobBtn.addEventListener("click", async ()=>{
+			//modelViewer.animationName = "ThumbsUp";	
+			//await modelViewer.updateComplete;
+			//modelViewer.play({repetitions: 1});
+		//});	
+
+		//sayYesBtn.addEventListener("click", async ()=>{
+			//modelViewer.animationName = "Yes";	
+			//await modelViewer.updateComplete;
+			//modelViewer.play({repetitions: 1});
+		//});	
+
+		//sayNoBtn.addEventListener("click", async ()=>{
+			//modelViewer.animationName = "No";	
+			//await modelViewer.updateComplete;
+			//modelViewer.play({repetitions: 1});
+		//});	
+
+		//punchBtn.addEventListener("click", async ()=>{
+			//modelViewer.animationName = "Punch";	
+			//await modelViewer.updateComplete;
+			//modelViewer.play({repetitions: 1});
+		//});	
+
+		modelViewer.addEventListener("finished", async () => {
+			modelViewer.animationName = "Idle";
+			await modelViewer.updateComplete;
+			modelViewer.play();
+		});
+
+	</script>
+</html>
+
+
