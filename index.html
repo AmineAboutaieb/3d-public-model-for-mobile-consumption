@@ -96,6 +96,18 @@
 			modelViewer.play();
 		});
 
+		window.animationMethods = {
+			wave : () => {
+				modelViewer.animationName = "Wave";	
+				modelViewer.updateComplete.then(()=>modelViewer.play({repetitions: 1})).catch();
+				// modelViewer.play({repetitions: 1});
+			},
+			thumbsUp : () => {
+				modelViewer.animationName = "ThumbsUp";	
+				modelViewer.updateComplete.then(()=>modelViewer.play({repetitions: 1})).catch();
+			}
+		}
+
 	</script>
 </html>
 
